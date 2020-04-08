@@ -9,30 +9,40 @@ namespace Turntablio.RoleService.Data
 {
     public class EmployeeService
     {
-        //private readonly IHttpClientFactory _clientFactory;
-        //private readonly EmployeeContext _context;
-        //public EmployeeService(EmployeeContext context)
-        //{
-        //    _context = context;
-        //}
-
-        //public EmployeeService(IHttpClientFactory clientFactory)
-        //{
-        //    _clientFactory = clientFactory;
-        //}
 
 
-        //public async Task<EmployeeModel[]> GetEmplyeeAsync()
-        //{
-        //    var request = new HttpRequestMessage(HttpMethod.Get,
-        //   "https://role-api.herokuapp.com/api/employees");
 
-        //    var client = _clientFactory.CreateClient();
-        //    var response = await client.SendAsync(request);
 
-        //    return null;
 
-        //}
+        private readonly IHttpClientFactory _clientFactory;
+        private readonly EmployeeContext _context;
+        public EmployeeService(EmployeeContext context)
+        {
+            _context = context;
+        }
+
+        public EmployeeService(IHttpClientFactory clientFactory)
+        {
+            _clientFactory = clientFactory;
+        }
+
+
+        public async Task<EmployeeModel[]> GetEmplyee()
+        {
+            string psql = "select * from employee";
+
+            return _context.LoadData<EmployeeModel, dynamic>(psql, new { }); 
+
+
+            //var request = new HttpRequestMessage(HttpMethod.Get,
+          // "https://role-api.herokuapp.com/api/employees");
+
+           // var client = _clientFactory.CreateClient();
+            // var response = await client.SendAsync(request);
+
+            //return null;
+
+        }
 
         //public async Task<EmployeeModel[]> GetEmplyeeAsync()
         //{
