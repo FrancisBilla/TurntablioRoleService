@@ -1,6 +1,7 @@
 ﻿@page "/employees"
 
 @using Turntablio.RoleService.Data
+@using Turntablio.RoleService.Model
 @*@inject EmployeeService EmployeeService;*@
 @inject HttpClient Http
 
@@ -9,7 +10,22 @@
 <hr />
 
 <a class="btn btn-success" href="/employee/new">New Employee</a>
+
+<h4>Add Employee</h4>
+<EditForm Model="@newEmployee" OnValidSubmit="@AddEmployee">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <InputText id="employeefname" @bind-Value="newEmployee.employeefname" />
+    <InputText id="employeelname" @bind-Value="newEmployee.employeelname" />
+    <InputText id="employeeemail" @bind-Value="newEmployee.employeeemail" />
+    <InputText id="employeeaddress" @bind-Value="newEmployee.employeeaddress" />
+    <InputText id="employeerole" @bind-Value="newEmployee.employeerole" />
+
+    <button type="submit" class="btn btn-primary">ADD</button>
+</EditForm>
 <br /><br />
+
 
 @if (Emps == null)
 {
@@ -51,6 +67,8 @@ else
 
 @code {
 
+    private DisplayEmployee newEmployee = new DisplayEmployee();
+
     bool isEmployeeDataLoadFinish = false;
 
     List<Emp> Emps = new List<Emp>();
@@ -58,7 +76,7 @@ else
     protected override async Task OnInitializedAsync()
     {
         //Emps = await Http.GetJsonAsync<List<Emp>>("https://role-api.herokuapp.com/api/employees");
-                
+
         Emps = await Http.GetJsonAsync<List<Emp>>("https://role-api.herokuapp.com/api/employees");
         isEmployeeDataLoadFinish = true;
     }
@@ -71,6 +89,11 @@ else
         public string employeeemail { get; set; }
         public string employeeaddress { get; set; }
         public string employeerole { get; set; }
+    }
+
+    private async Task AddEmployee()
+    {
+       
     }
 
 }

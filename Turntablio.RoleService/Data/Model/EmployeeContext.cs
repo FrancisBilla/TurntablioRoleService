@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Turntablio.RoleService.Data.Model
 {
+
     public class EmployeeContext: DbContext
     {
         public EmployeeContext(DbContextOptions<EmployeeContext> options) : base(options) { }
