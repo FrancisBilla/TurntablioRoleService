@@ -21,5 +21,15 @@ namespace Turntablio.RoleService.Data.Model
         {
             throw new NotImplementedException();
         }
+
+        internal Task SaveData()
+        {
+            throw new NotImplementedException();
+        }
+
+        internal Task SaveData(string psql, EmployeeModel employee)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

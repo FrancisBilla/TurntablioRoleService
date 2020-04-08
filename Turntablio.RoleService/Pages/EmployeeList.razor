@@ -2,7 +2,7 @@
 
 @using Turntablio.RoleService.Data
 @using Turntablio.RoleService.Model
-@*@inject EmployeeService EmployeeService;*@
+@inject EmployeeService EmployeeService;
 @inject HttpClient Http
 
 
@@ -66,6 +66,7 @@ else
 
 
 @code {
+    
 
     private DisplayEmployee newEmployee = new DisplayEmployee();
 
@@ -91,9 +92,9 @@ else
         public string employeerole { get; set; }
     }
 
-    private async Task AddEmployee()
+    private async Task InsertEmployee()
     {
-       
+       await 
     }
 
 }

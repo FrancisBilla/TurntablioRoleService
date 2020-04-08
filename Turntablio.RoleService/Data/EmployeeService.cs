@@ -7,12 +7,8 @@ using Turntablio.RoleService.Data.Model;
 
 namespace Turntablio.RoleService.Data
 {
-    public class EmployeeService
+    public class EmployeeService : IEmployeeService
     {
-
-
-
-
 
         private readonly IHttpClientFactory _clientFactory;
         private readonly EmployeeContext _context;
@@ -31,17 +27,25 @@ namespace Turntablio.RoleService.Data
         {
             string psql = "select * from employee";
 
-            return _context.LoadData<EmployeeModel, dynamic>(psql, new { }); 
+            return _context.LoadData<EmployeeModel, dynamic>(psql, new { });
 
 
             //var request = new HttpRequestMessage(HttpMethod.Get,
-          // "https://role-api.herokuapp.com/api/employees");
+            // "https://role-api.herokuapp.com/api/employees");
 
-           // var client = _clientFactory.CreateClient();
+            // var client = _clientFactory.CreateClient();
             // var response = await client.SendAsync(request);
 
             //return null;
 
+        }
+
+        public Task InsertEmployee(EmployeeModel employee)
+        {
+            string psql = @"insert into Employee(firstName, LastName, Emailaddress, Address, Role)
+                            values (@firstName, @LastName, @Emailaddress, @Address, @Role);";
+
+            return _context.SaveData(psql, employee);
         }
 
         //public async Task<EmployeeModel[]> GetEmplyeeAsync()
